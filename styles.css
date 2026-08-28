@@ -72,6 +72,7 @@ details[open] summary i { transform:rotate(45deg); }
 .featured-module[open] { background:#2a2b30; }
 .materials { background:var(--mint); }
 .material-card { position:relative; display:grid; grid-template-columns:150px 1fr 230px; gap:40px; min-height:460px; padding:38px; border:1px solid var(--ink); border-radius:28px; background:var(--paper); overflow:hidden; }
+.material-card + .material-card { margin-top:18px; }
 .material-meta { display:flex; flex-direction:column; justify-content:space-between; align-items:flex-start; }
 .material-number { font-size:72px; letter-spacing:-.075em; }
 .file-type { padding:8px 11px; border:1px solid var(--ink); border-radius:999px; font-size:10px; text-transform:uppercase; letter-spacing:.08em; }
