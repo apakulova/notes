@@ -69,6 +69,8 @@ details[open] summary i { transform:rotate(45deg); }
 .chips { display:flex; flex-wrap:wrap; gap:9px; }
 .chips span { padding:10px 13px; border-radius:999px; background:var(--mint); color:var(--ink); font-size:12px; }
 .inline-material { display:flex; justify-content:space-between; margin-top:35px; padding:17px 0; border-top:1px solid rgba(255,255,255,.35); border-bottom:1px solid rgba(255,255,255,.35); }
+.module-materials { margin-top:35px; border-top:1px solid rgba(255,255,255,.35); }
+.module-materials .inline-material { margin-top:0; border-top:0; }
 .featured-module[open] { background:#2a2b30; }
 .materials { background:var(--mint); }
 .material-card { position:relative; display:grid; grid-template-columns:150px 1fr 230px; gap:40px; min-height:460px; padding:38px; border:1px solid var(--ink); border-radius:28px; background:var(--paper); overflow:hidden; }
