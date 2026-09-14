@@ -221,12 +221,12 @@ def render_step(page: dict, pages: list[dict], index: int, asset_map: dict[str, 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{html.escape(page["title"].strip())} · шаг {page["step_position"]}</title>
   <meta name="description" content="Локальная копия урока курса «Фигма для UX-редакторов».">
-  <link rel="icon" type="image/png" sizes="512x512" href="../../../assets/favicon.png">
-  <link rel="apple-touch-icon" href="../../../assets/favicon.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../../assets/favicon.png">
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body class="step-page">
-  <header class="topbar"><a href="../index.html">Figma для UX‑редакторов</a><span>{index + 1} / {len(pages)}</span><a href="../../../index.html">Все курсы</a></header>
+  <header class="topbar"><a href="../index.html">Figma для UX‑редакторов</a><span>{index + 1} / {len(pages)}</span><a href="../../index.html">Все курсы</a></header>
   <div class="course-shell">
     <aside class="course-nav"><a class="course-home" href="../index.html">Оглавление курса</a>{navigation_html(page, pages, index)}</aside>
     <main class="step-main">
@@ -279,12 +279,12 @@ def render_course_index(manifest: dict, pages: list[dict], asset_map: dict[str, 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Фигма для UX-редакторов — архив курса</title>
   <meta name="description" content="Личный архив курса «Фигма для UX-редакторов»: 8 разделов, 29 уроков и {len(pages)} {plural_steps(len(pages))}.">
-  <link rel="icon" type="image/png" sizes="512x512" href="../../assets/favicon.png">
-  <link rel="apple-touch-icon" href="../../assets/favicon.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/favicon.png">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="course-index">
-  <header class="topbar"><a href="../../index.html">← Все курсы</a><span>Личный учебный архив</span><a href="{COURSE_SOURCE}" target="_blank" rel="noopener">Stepik ↗</a></header>
+  <header class="topbar"><a href="../index.html">← Все курсы</a><span>Личный учебный архив</span><a href="{COURSE_SOURCE}" target="_blank" rel="noopener">Stepik ↗</a></header>
   <main>
     <section class="course-hero">
       <div><p class="eyebrow">Отдельный курс · Stepik · снимок 2 сентября 2026</p><h1>Фигма для<br>UX‑редакторов</h1><p class="lead">{html.escape(course.get("summary", ""))}</p><div class="stats"><span><b>8</b> разделов</span><span><b>29</b> уроков</span><span><b>{len(pages)}</b> шагов</span></div><a class="primary" href="steps/{page_filename(pages[0])}">Начать с первого шага →</a></div>
@@ -307,7 +307,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--manifest", type=Path, default=Path("/tmp/codex-stepik-286605-manifest.json"))
     parser.add_argument("--pages", type=Path, default=Path("/tmp/codex-stepik-286605-pages.json"))
-    parser.add_argument("--output", type=Path, default=Path("courses") / COURSE_SLUG)
+    parser.add_argument("--output", type=Path, default=Path(COURSE_SLUG))
     args = parser.parse_args()
 
     manifest = read_json(args.manifest)
