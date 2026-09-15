@@ -594,13 +594,15 @@
     .public-collage {
       display: grid;
       grid-template-columns: minmax(0, 1.28fr) minmax(0, 1fr) minmax(250px, .76fr);
-      gap: 18px;
-      align-items: start;
+      grid-template-rows: repeat(2, minmax(560px, auto));
+      gap: 1px;
+      overflow: hidden;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 56px;
     }
     .voice-stack {
-      display: grid;
-      min-width: 0;
-      gap: 18px;
+      display: contents;
     }
 
     .voice-card {
@@ -610,30 +612,33 @@
       min-height: 0;
       overflow: hidden;
       background: var(--forest);
-      border-radius: 30px;
+      border-radius: 0;
       color: white;
       text-decoration: none;
-      transition: transform .2s ease;
+      transition: filter .2s ease;
     }
-    a.voice-card:hover { transform: translateY(-3px); }
+    a.voice-card:hover { filter: brightness(.97); }
     .voice-card img {
       width: 100%;
-      height: auto;
+      height: 100%;
       display: block;
+      object-fit: contain;
     }
     .voice-card.photo {
       display: grid;
-      grid-template-rows: auto auto;
+      grid-template-rows: minmax(0, 1fr) auto;
       background: var(--paper-light);
-      border: 1px solid var(--line);
+      border: 0;
       color: var(--ink);
     }
     .voice-media {
+      display: grid;
       min-width: 0;
       min-height: 0;
       overflow: hidden;
       background: #e7dfcf;
       line-height: 0;
+      place-items: center;
     }
     .voice-content {
       position: relative;
@@ -677,25 +682,26 @@
       color: var(--ink);
       font-size: 19px;
     }
-    .voice-channel { min-height: 540px; border-radius: 30px 100px 30px 30px; }
+    .voice-channel { grid-column: 1; grid-row: 1; min-height: 0; }
     .voice-channel .voice-content { align-content: space-between; padding: 42px; background: transparent; }
     .voice-channel .voice-copy { align-self: start; }
     .voice-channel h3 { font-size: clamp(44px, 3.7vw, 64px); }
     .voice-channel p:not(.voice-label) { max-width: 520px; margin: 24px 0 0; color: rgba(255,255,255,.78); }
-    .voice-interview { border-radius: 80px 30px 30px 30px; }
+    .voice-interview { grid-column: 2; grid-row: 1; }
     .voice-interview .voice-media { background: #ffbc2e; }
-    .voice-avito { border-radius: 30px 96px 30px 30px; }
+    .voice-avito { grid-column: 3; grid-row: 1; }
     .voice-avito .voice-media { background: #243b39; }
     .voice-avito .voice-content { padding: 26px 22px 26px 26px; }
     .voice-avito h3 { font-size: clamp(24px, 1.65vw, 30px); }
-    .voice-ux { border-radius: 30px 30px 96px 30px; }
-    .voice-lectures { grid-template-columns: 56% minmax(0, 44%); grid-template-rows: auto; border-radius: 30px 30px 92px 30px; }
+    .voice-ux { grid-column: 2; grid-row: 2; }
+    .voice-lectures { grid-column: 1; grid-row: 2; grid-template-columns: 56% minmax(0, 44%); grid-template-rows: minmax(0, 1fr); }
     .voice-lectures .voice-content { padding: 26px 22px 26px 26px; }
     .voice-lectures h3 { font-size: clamp(23px, 1.55vw, 29px); }
     .voice-mts {
-      min-height: 300px;
+      grid-column: 3;
+      grid-row: 2;
+      min-height: 0;
       background: var(--coral);
-      border-radius: 30px 88px 30px 30px;
       color: var(--ink);
     }
     .voice-mts .voice-label { color: rgba(23,25,22,.66); }
@@ -706,20 +712,6 @@
       color: rgba(23,25,22,.72);
       font-size: 16px;
       line-height: 1.38;
-    }
-
-    .topics {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      margin-top: 34px;
-    }
-    .topic {
-      padding: 9px 13px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--muted);
-      font-size: 14px;
     }
 
     .contact {
@@ -767,12 +759,20 @@
       .case-featured,
       .chistovik,
       .contact { grid-template-columns: 1fr; }
-      .public-collage { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .voice-stack { display: contents; }
+      .public-collage {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(3, minmax(520px, auto));
+        border-radius: 44px;
+      }
       .voice-card { min-height: 0; }
       .voice-card.photo,
       .voice-lectures { grid-template-columns: 1fr; grid-template-rows: auto auto; }
-      .voice-channel { grid-column: 1 / -1; min-height: 450px; }
+      .voice-channel { grid-column: 1; grid-row: 1; }
+      .voice-interview { grid-column: 2; grid-row: 1; }
+      .voice-lectures { grid-column: 1; grid-row: 2; }
+      .voice-ux { grid-column: 2; grid-row: 2; }
+      .voice-avito { grid-column: 1; grid-row: 3; }
+      .voice-mts { grid-column: 2; grid-row: 3; }
       .voice-card h3,
       .voice-avito h3,
       .voice-lectures h3 { font-size: clamp(26px, 3.8vw, 32px); }
@@ -780,6 +780,21 @@
       .job-body { grid-template-columns: 1fr; padding-left: 164px; }
       .role-row { grid-template-columns: 70px minmax(180px, .65fr) minmax(0, 1fr); }
       .chistovik-mark { min-height: 260px; }
+    }
+
+    @media (max-width: 680px) {
+      .public-collage {
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+        grid-auto-rows: minmax(430px, auto);
+        border-radius: 38px;
+      }
+      .voice-channel,
+      .voice-interview,
+      .voice-lectures,
+      .voice-ux,
+      .voice-avito,
+      .voice-mts { grid-column: 1; grid-row: auto; }
     }
 
     @media (max-width: 540px) {
@@ -813,9 +828,9 @@
       .role-row { grid-template-columns: 44px minmax(0, 1fr); gap: 18px; }
       .role-row p { grid-column: 2; }
       .chistovik-mark { min-height: 220px; }
-      .public-collage { grid-template-columns: 1fr; gap: 14px; }
+      .public-collage { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 1px; border-radius: 34px; }
       .voice-card,
-      .voice-channel { grid-column: auto; border-radius: 26px 70px 26px 26px; }
+      .voice-channel { grid-column: auto; border-radius: 0; }
       .voice-channel { min-height: 460px; }
       .voice-card.photo { display: flex; min-height: 0; }
       .voice-media { display: none; }
@@ -1129,13 +1144,6 @@
         </div>
       </div>
 
-      <div class="topics" aria-label="Темы для выступлений и разговоров">
-        <span class="topic">UX-редактор внутри продукта</span>
-        <span class="topic">Сложные и рискованные сценарии</span>
-        <span class="topic">Тексты в дизайн-системе</span>
-        <span class="topic">Влияние без формальной власти</span>
-        <span class="topic">AI и собственные инструменты</span>
-      </div>
     </section>
 
     <section class="section contact" id="contact">
