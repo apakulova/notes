@@ -594,12 +594,8 @@
     .public-collage {
       display: grid;
       grid-template-columns: minmax(0, 1.28fr) minmax(0, 1fr) minmax(250px, .76fr);
-      grid-template-rows: repeat(2, minmax(560px, auto));
-      gap: 1px;
-      overflow: hidden;
-      background: var(--line);
-      border: 1px solid var(--line);
-      border-radius: 56px;
+      grid-template-rows: repeat(2, minmax(460px, auto));
+      gap: 18px;
     }
     .voice-stack {
       display: contents;
@@ -612,7 +608,7 @@
       min-height: 0;
       overflow: hidden;
       background: var(--forest);
-      border-radius: 0;
+      border-radius: 18px;
       color: white;
       text-decoration: none;
       transition: filter .2s ease;
@@ -622,13 +618,13 @@
       width: 100%;
       height: 100%;
       display: block;
-      object-fit: contain;
+      object-fit: cover;
     }
     .voice-card.photo {
       display: grid;
       grid-template-rows: minmax(0, 1fr) auto;
       background: var(--paper-light);
-      border: 0;
+      border: 1px solid var(--line);
       color: var(--ink);
     }
     .voice-media {
@@ -682,19 +678,23 @@
       color: var(--ink);
       font-size: 19px;
     }
-    .voice-channel { grid-column: 1; grid-row: 1; min-height: 0; }
+    .voice-channel { grid-column: 1; grid-row: 1; min-height: 0; border-radius: 54px 18px 18px 18px; }
     .voice-channel .voice-content { align-content: space-between; padding: 42px; background: transparent; }
     .voice-channel .voice-copy { align-self: start; }
     .voice-channel h3 { font-size: clamp(44px, 3.7vw, 64px); }
     .voice-channel p:not(.voice-label) { max-width: 520px; margin: 24px 0 0; color: rgba(255,255,255,.78); }
     .voice-interview { grid-column: 2; grid-row: 1; }
     .voice-interview .voice-media { background: #ffbc2e; }
-    .voice-avito { grid-column: 3; grid-row: 1; }
+    .voice-interview img { object-position: center 44%; }
+    .voice-avito { grid-column: 3; grid-row: 1; border-radius: 18px 54px 18px 18px; }
     .voice-avito .voice-media { background: #243b39; }
+    .voice-avito img { object-position: center 38%; }
     .voice-avito .voice-content { padding: 26px 22px 26px 26px; }
     .voice-avito h3 { font-size: clamp(24px, 1.65vw, 30px); }
     .voice-ux { grid-column: 2; grid-row: 2; }
-    .voice-lectures { grid-column: 1; grid-row: 2; grid-template-columns: 56% minmax(0, 44%); grid-template-rows: minmax(0, 1fr); }
+    .voice-ux img { object-position: center; }
+    .voice-lectures { grid-column: 1; grid-row: 2; grid-template-columns: 56% minmax(0, 44%); grid-template-rows: minmax(0, 1fr); border-radius: 18px 18px 18px 54px; }
+    .voice-lectures img { object-position: 42% center; }
     .voice-lectures .voice-content { padding: 26px 22px 26px 26px; }
     .voice-lectures h3 { font-size: clamp(23px, 1.55vw, 29px); }
     .voice-mts {
@@ -702,8 +702,10 @@
       grid-row: 2;
       min-height: 0;
       background: var(--coral);
+      border-radius: 18px 18px 54px 18px;
       color: var(--ink);
     }
+    .voice-mts img { object-position: center 42%; }
     .voice-mts .voice-label { color: rgba(23,25,22,.66); }
     .voice-mts .voice-content { grid-template-columns: 1fr; background: var(--coral); }
     .voice-mts h3 { font-size: clamp(25px, 1.8vw, 32px); }
@@ -761,18 +763,17 @@
       .contact { grid-template-columns: 1fr; }
       .public-collage {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        grid-template-rows: repeat(3, minmax(520px, auto));
-        border-radius: 44px;
+        grid-template-rows: repeat(3, minmax(460px, auto));
       }
       .voice-card { min-height: 0; }
       .voice-card.photo,
-      .voice-lectures { grid-template-columns: 1fr; grid-template-rows: auto auto; }
-      .voice-channel { grid-column: 1; grid-row: 1; }
-      .voice-interview { grid-column: 2; grid-row: 1; }
-      .voice-lectures { grid-column: 1; grid-row: 2; }
+      .voice-lectures { grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; }
+      .voice-channel { grid-column: 1; grid-row: 1; border-radius: 44px 18px 18px 18px; }
+      .voice-interview { grid-column: 2; grid-row: 1; border-radius: 18px 44px 18px 18px; }
+      .voice-lectures { grid-column: 1; grid-row: 2; border-radius: 18px; }
       .voice-ux { grid-column: 2; grid-row: 2; }
-      .voice-avito { grid-column: 1; grid-row: 3; }
-      .voice-mts { grid-column: 2; grid-row: 3; }
+      .voice-avito { grid-column: 1; grid-row: 3; border-radius: 18px 18px 18px 44px; }
+      .voice-mts { grid-column: 2; grid-row: 3; border-radius: 18px 18px 44px 18px; }
       .voice-card h3,
       .voice-avito h3,
       .voice-lectures h3 { font-size: clamp(26px, 3.8vw, 32px); }
@@ -786,15 +787,17 @@
       .public-collage {
         grid-template-columns: 1fr;
         grid-template-rows: none;
-        grid-auto-rows: minmax(430px, auto);
-        border-radius: 38px;
+        grid-auto-rows: minmax(400px, auto);
+        gap: 14px;
       }
       .voice-channel,
       .voice-interview,
       .voice-lectures,
       .voice-ux,
       .voice-avito,
-      .voice-mts { grid-column: 1; grid-row: auto; }
+      .voice-mts { grid-column: 1; grid-row: auto; border-radius: 16px; }
+      .voice-channel { border-radius: 38px 38px 16px 16px; }
+      .voice-mts { border-radius: 16px 16px 38px 38px; }
     }
 
     @media (max-width: 540px) {
@@ -828,9 +831,9 @@
       .role-row { grid-template-columns: 44px minmax(0, 1fr); gap: 18px; }
       .role-row p { grid-column: 2; }
       .chistovik-mark { min-height: 220px; }
-      .public-collage { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 1px; border-radius: 34px; }
+      .public-collage { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 14px; }
       .voice-card,
-      .voice-channel { grid-column: auto; border-radius: 0; }
+      .voice-channel { grid-column: auto; }
       .voice-channel { min-height: 460px; }
       .voice-card.photo { display: flex; min-height: 0; }
       .voice-media { display: none; }
