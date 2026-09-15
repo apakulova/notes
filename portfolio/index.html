@@ -661,10 +661,10 @@
     .voice-card h3 {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      font-size: clamp(24px, 1.75vw, 32px);
+      font-size: clamp(22px, 1.5vw, 28px);
       font-weight: 700;
       letter-spacing: -.035em;
-      line-height: 1.04;
+      line-height: 1.08;
     }
     .voice-arrow {
       display: grid;
@@ -690,13 +690,13 @@
     .voice-avito .voice-media { background: #243b39; }
     .voice-avito img { object-position: center 38%; }
     .voice-avito .voice-content { padding: 26px 22px 26px 26px; }
-    .voice-avito h3 { font-size: clamp(24px, 1.65vw, 30px); }
+    .voice-avito h3 { font-size: clamp(22px, 1.45vw, 27px); }
     .voice-ux { grid-column: 2; grid-row: 2; }
     .voice-ux img { object-position: center; }
     .voice-lectures { grid-column: 1; grid-row: 2; grid-template-columns: 56% minmax(0, 44%); grid-template-rows: minmax(0, 1fr); border-radius: 18px 18px 18px 54px; }
     .voice-lectures img { object-position: 42% center; }
     .voice-lectures .voice-content { padding: 26px 22px 26px 26px; }
-    .voice-lectures h3 { font-size: clamp(23px, 1.55vw, 29px); }
+    .voice-lectures h3 { font-size: clamp(22px, 1.45vw, 27px); }
     .voice-mts {
       grid-column: 3;
       grid-row: 2;
@@ -708,13 +708,28 @@
     .voice-mts img { object-position: center 42%; }
     .voice-mts .voice-label { color: rgba(23,25,22,.66); }
     .voice-mts .voice-content { grid-template-columns: 1fr; background: var(--coral); }
-    .voice-mts h3 { font-size: clamp(25px, 1.8vw, 32px); }
-    .voice-note {
-      margin: 16px 0 0;
+    .voice-mts h3 { font-size: clamp(22px, 1.45vw, 27px); }
+    .voice-description {
+      margin: 14px 0 0;
       color: rgba(23,25,22,.72);
       font-size: 16px;
-      line-height: 1.38;
+      line-height: 1.4;
     }
+    .voice-cta {
+      display: inline-flex;
+      width: max-content;
+      min-height: 40px;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 750;
+      line-height: 1;
+      transition: background .2s ease, color .2s ease;
+    }
+    a.voice-card:hover .voice-cta { background: var(--ink); color: var(--paper-light); }
 
     .contact {
       display: grid;
@@ -776,7 +791,7 @@
       .voice-mts { grid-column: 2; grid-row: 3; border-radius: 18px 18px 44px 18px; }
       .voice-card h3,
       .voice-avito h3,
-      .voice-lectures h3 { font-size: clamp(26px, 3.8vw, 32px); }
+      .voice-lectures h3 { font-size: clamp(24px, 3.2vw, 28px); }
       .case-number { min-height: 330px; }
       .job-body { grid-template-columns: 1fr; padding-left: 164px; }
       .role-row { grid-template-columns: 70px minmax(180px, .65fr) minmax(0, 1fr); }
@@ -842,7 +857,7 @@
       .voice-channel .voice-content { padding: 30px 24px; }
       .voice-card h3,
       .voice-avito h3,
-      .voice-lectures h3 { font-size: clamp(27px, 8vw, 34px); }
+      .voice-lectures h3 { font-size: clamp(26px, 7vw, 32px); }
       .voice-channel h3 { font-size: clamp(40px, 12vw, 56px); }
       .voice-mts { min-height: 230px; }
       .contact-actions { margin-top: 10px; }
@@ -1092,8 +1107,12 @@
               <img src="assets/lectures.jpg" alt="Лекция Анны для студентов" width="846" height="845" loading="lazy">
             </div>
             <div class="voice-content">
-              <div class="voice-copy"><p class="voice-label">Лекции · МГУ и СПбГУ</p><h3>Чем продуктовый текст отличается от медиа</h3></div>
-              <span class="voice-arrow" aria-hidden="true">↗</span>
+              <div class="voice-copy">
+                <p class="voice-label">Лекции · МГУ и СПбГУ</p>
+                <h3>Про профессию UX-редактора</h3>
+                <p class="voice-description">Рассказывала будущим журналистам о своей работе и отличиях продуктового текста от медиа, а ещё проводила практику.</p>
+              </div>
+              <span class="voice-cta">Читать пост</span>
             </div>
           </a>
         </div>
@@ -1104,8 +1123,12 @@
               <img src="assets/interview.jpg" alt="Обложка интервью Анны Акуловой для журнала Кто студент" width="2048" height="1114" loading="lazy">
             </div>
             <div class="voice-content">
-              <div class="voice-copy"><p class="voice-label">Интервью · Кто студент</p><h3>Хороший UX-редактор — дотошный зануда</h3></div>
-              <span class="voice-arrow" aria-hidden="true">↗</span>
+              <div class="voice-copy">
+                <p class="voice-label">Интервью · Кто студент</p>
+                <h3>Про путь в UX-редактуру</h3>
+                <p class="voice-description">Разговор о том, как договариваться с экспертами и почему одна ошибка редактора может сломать целый продукт.</p>
+              </div>
+              <span class="voice-cta">Читать интервью</span>
             </div>
           </a>
 
@@ -1114,8 +1137,12 @@
               <img src="assets/ux-marathon.jpg" alt="Рабочее место во время доклада на UX-марафоне" width="1280" height="960" loading="lazy">
             </div>
             <div class="voice-content">
-              <div class="voice-copy"><p class="voice-label">Доклад · UX-марафон</p><h3>Что редактору делать с дизайн-системой</h3></div>
-              <span class="voice-arrow" aria-hidden="true">↗</span>
+              <div class="voice-copy">
+                <p class="voice-label">Доклад · UX-марафон</p>
+                <h3>Про тексты в дизайн-системе</h3>
+                <p class="voice-description">Что ещё за дизайн-система, как редактор может с ней работать, зачем всё это нужно и как ничего не сломать.</p>
+              </div>
+              <span class="voice-cta">Смотреть доклад</span>
             </div>
           </a>
         </div>
@@ -1126,8 +1153,12 @@
               <img src="assets/avito-talk-optimized.jpg" alt="Анна выступает на митапе Авито" width="1100" height="1100" loading="lazy">
             </div>
             <div class="voice-content">
-              <div class="voice-copy"><p class="voice-label">Доклад · Авито</p><h3>Как редактор влияет на продукт</h3></div>
-              <span class="voice-arrow" aria-hidden="true">↗</span>
+              <div class="voice-copy">
+                <p class="voice-label">Доклад · митап Авито</p>
+                <h3>Про влияние редактора на продукт</h3>
+                <p class="voice-description">Как редактору заработать авторитет, доказать свою ценность и понять, что команда начала вам доверять.</p>
+              </div>
+              <span class="voice-cta">Смотреть доклад</span>
             </div>
           </a>
 
@@ -1138,10 +1169,10 @@
             <div class="voice-content">
               <div class="voice-copy">
                 <p class="voice-label">Доклад · митап МТС</p>
-                <h3>Не всё можно измерить в деньгах</h3>
-                <p class="voice-note">Как защищать решения, работать с дизайн-метриками и строить креативную пару с дизайнером.</p>
+                <h3>Про роль редактора в продукте</h3>
+                <p class="voice-description">Как мы защищаем свои решения и почему я верю, что не всё измеряется в деньгах.</p>
               </div>
-              <span class="voice-arrow" aria-hidden="true">↗</span>
+              <span class="voice-cta">Смотреть доклад</span>
             </div>
           </a>
         </div>
