@@ -1,0 +1,1160 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Анна Акулова — UX-редактор. Проектирую сложные продуктовые сценарии, выстраиваю системы и помогаю командам снижать ошибки пользователей.">
+  <meta name="theme-color" content="#123f3d">
+  <title>Анна Акулова — UX-редактор</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23123f3d'/%3E%3Cpath d='M18 47 28 16h9l10 31h-8l-2-7H27l-2 7Zm11-14h6l-3-11Z' fill='%23f6efe1'/%3E%3Ccircle cx='48' cy='16' r='6' fill='%23e65d3b'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --ink: #171916;
+      --forest: #123f3d;
+      --forest-deep: #092e2d;
+      --paper: #f6efe1;
+      --paper-light: #fffaf0;
+      --coral: #e65d3b;
+      --muted: #68665e;
+      --line: rgba(23, 25, 22, .24);
+      --page: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 3px solid var(--coral); outline-offset: 4px; }
+
+    .shell {
+      width: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: var(--paper);
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      padding: 30px clamp(28px, 6.5vw, 100px) 20px;
+      border-bottom: 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      position: relative;
+      display: grid;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--forest);
+      color: var(--paper-light);
+    }
+
+    .brand-mark::after {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--coral);
+      content: "";
+    }
+
+    .nav { display: flex; flex-wrap: wrap; gap: 22px; }
+    .nav a {
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .nav a:hover { color: var(--coral); }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(390px, .92fr);
+      min-height: calc(100vh - 85px);
+      background:
+        radial-gradient(circle at 8% 92%, rgba(230,93,59,.09), transparent 24rem),
+        var(--paper);
+    }
+
+    .hero-copy {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(70px, 8vw, 128px) clamp(42px, 7vw, 112px) clamp(82px, 9vw, 138px);
+    }
+
+    .hero-copy::before {
+      position: absolute;
+      top: 42px;
+      right: 38px;
+      display: grid;
+      width: 54px;
+      height: 54px;
+      place-items: center;
+      background: var(--coral);
+      border-radius: 17px;
+      box-shadow: 6px 7px 0 var(--forest);
+      color: var(--paper-light);
+      content: "✱";
+      font-size: 31px;
+      line-height: 1;
+      transform: rotate(8deg);
+    }
+
+    .kicker,
+    .section-label {
+      margin: 0 0 26px;
+      color: var(--forest);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .hero .kicker {
+      width: max-content;
+      padding-bottom: 7px;
+      border-bottom: 1px dashed rgba(18,63,61,.42);
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(56px, 6.4vw, 92px);
+      font-weight: 750;
+      letter-spacing: -.067em;
+      line-height: .94;
+    }
+
+    .accent-line {
+      position: relative;
+      display: inline-block;
+      z-index: 0;
+    }
+
+    .accent-line::after {
+      position: absolute;
+      right: -.02em;
+      bottom: .04em;
+      left: -.02em;
+      height: .14em;
+      z-index: -1;
+      background: var(--coral);
+      border-radius: 999px;
+      content: "";
+      transform: rotate(-1deg);
+    }
+
+    .hero-intro {
+      max-width: 650px;
+      margin: 44px 0 0;
+      color: #343530;
+      font-size: clamp(20px, 1.75vw, 25px);
+      line-height: 1.38;
+    }
+
+    .hero-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-top: 64px;
+    }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 11px; }
+    .button {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 11px 18px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .18s ease, background .18s ease, color .18s ease;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button.primary { background: var(--ink); color: var(--paper-light); }
+    .button.primary:hover { background: var(--forest); }
+
+    .hero .button:not(.primary) {
+      border-style: dashed;
+      transform: rotate(-1deg);
+    }
+
+    .hero .button:not(.primary):hover { transform: rotate(-1deg) translateY(-2px); }
+
+    .small-note {
+      max-width: 180px;
+      margin: 0;
+      padding-left: 14px;
+      border-left: 2px solid var(--coral);
+      color: #545249;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 15px;
+      font-style: italic;
+      line-height: 1.45;
+      text-align: right;
+      transform: rotate(1.4deg);
+    }
+
+    .hero-visual {
+      position: relative;
+      min-width: 0;
+      min-height: 650px;
+      align-self: stretch;
+      margin: 38px clamp(42px, 6.5vw, 100px) 82px 0;
+      overflow: visible;
+      background: transparent;
+      transform: rotate(.45deg);
+    }
+
+    .hero-visual::before {
+      position: absolute;
+      inset: 20px -18px -18px 18px;
+      background: var(--forest);
+      border-radius: 46% 46% 34px 34px;
+      content: "";
+      transform: rotate(-1.4deg);
+    }
+
+    .hero-visual img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: 50% 36%;
+      border: 9px solid var(--paper-light);
+      border-radius: 46% 46% 34px 34px;
+      filter: saturate(.84) contrast(.98) sepia(.08);
+    }
+
+    .photo-caption {
+      position: absolute;
+      right: -34px;
+      bottom: -32px;
+      left: auto;
+      width: min(370px, 82%);
+      margin: 0;
+      padding: 18px 20px;
+      background: var(--paper-light);
+      border: 1px solid var(--ink);
+      border-radius: 6px;
+      box-shadow: 8px 9px 0 rgba(230,93,59,.88);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 16px;
+      font-style: italic;
+      line-height: 1.42;
+      transform: rotate(-2.2deg);
+    }
+
+    .manifesto {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr);
+      gap: clamp(42px, 8vw, 110px);
+      padding: clamp(90px, 11vw, 160px) clamp(32px, 7.5vw, 116px);
+      border-top: 1px solid var(--line);
+    }
+
+    .manifesto h2 {
+      max-width: 820px;
+      margin: 0;
+      font-size: clamp(43px, 5.7vw, 78px);
+      font-weight: 720;
+      letter-spacing: -.055em;
+      line-height: .98;
+    }
+
+    .manifesto-copy {
+      align-self: end;
+      padding-top: 24px;
+      border-top: 1px solid var(--ink);
+    }
+
+    .manifesto-copy p { margin: 0; }
+    .manifesto-copy p + p { margin-top: 18px; }
+    .manifesto-copy strong { color: var(--forest); }
+
+    .section {
+      padding: clamp(90px, 10vw, 150px) clamp(32px, 7.5vw, 116px);
+      border-top: 1px solid var(--line);
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr);
+      gap: 42px;
+      align-items: end;
+      margin-bottom: 54px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(45px, 6.2vw, 82px);
+      font-weight: 720;
+      letter-spacing: -.06em;
+      line-height: .94;
+    }
+
+    .section-heading > p:last-child {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    .case-featured {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(250px, .8fr);
+      min-height: 480px;
+      overflow: hidden;
+      background: var(--forest);
+      border-radius: 28px;
+      color: var(--paper-light);
+    }
+
+    .case-story {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(32px, 5vw, 58px);
+    }
+
+    .case-meta {
+      margin: 0 0 36px;
+      color: rgba(255,255,255,.68);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .case-story h3 {
+      max-width: 700px;
+      margin: 0;
+      font-size: clamp(38px, 5vw, 64px);
+      font-weight: 720;
+      letter-spacing: -.052em;
+      line-height: .98;
+    }
+
+    .case-story .case-copy {
+      max-width: 650px;
+      margin: 32px 0;
+      color: rgba(255,255,255,.83);
+      font-size: 18px;
+    }
+
+    .case-featured .button {
+      align-self: flex-start;
+      border-color: rgba(255,255,255,.72);
+      color: white;
+    }
+
+    .case-number {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 38px;
+      overflow: hidden;
+      background: var(--coral);
+    }
+
+    .case-number::before {
+      position: absolute;
+      top: -90px;
+      right: -80px;
+      width: 280px;
+      height: 280px;
+      border: 1px solid rgba(255,255,255,.34);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .metric {
+      position: relative;
+      display: block;
+      font-size: clamp(86px, 13vw, 160px);
+      font-weight: 750;
+      letter-spacing: -.09em;
+      line-height: .72;
+    }
+
+    .metric-note {
+      position: relative;
+      max-width: 260px;
+      margin: 30px 0 0;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .case-pair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 24px;
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .case-compact {
+      display: flex;
+      min-height: 440px;
+      flex-direction: column;
+      padding: 38px 0 28px;
+    }
+
+    .case-compact + .case-compact {
+      padding-left: 36px;
+      border-left: 1px solid var(--ink);
+    }
+
+    .case-compact:first-child { padding-right: 36px; }
+    .case-compact .case-meta { color: var(--forest); }
+    .case-compact h3 {
+      margin: 0 0 24px;
+      font-size: clamp(30px, 3.8vw, 48px);
+      font-weight: 720;
+      letter-spacing: -.05em;
+      line-height: 1;
+    }
+    .case-compact p:not(.case-meta) { margin: 0; color: var(--muted); }
+    .case-compact .button { align-self: flex-start; margin-top: auto; }
+
+    .compact-metrics {
+      display: flex;
+      gap: 26px;
+      margin: 30px 0;
+    }
+
+    .compact-metrics strong {
+      display: block;
+      color: var(--coral);
+      font-size: 36px;
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+
+    .compact-metrics span {
+      display: block;
+      max-width: 145px;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.3;
+    }
+
+    .experience-intro {
+      max-width: 840px;
+      margin: 0 0 52px;
+      font-size: clamp(27px, 3.5vw, 43px);
+      letter-spacing: -.035em;
+      line-height: 1.15;
+    }
+
+    .timeline { border-top: 1px solid var(--ink); }
+    .job { border-bottom: 1px solid var(--ink); }
+    .job summary {
+      display: grid;
+      grid-template-columns: 140px minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: center;
+      padding: 24px 0;
+      cursor: pointer;
+      list-style: none;
+    }
+    .job summary::-webkit-details-marker { display: none; }
+    .job time { color: var(--forest); font-size: 14px; font-weight: 800; }
+    .job-name { font-size: clamp(24px, 3vw, 36px); font-weight: 720; letter-spacing: -.035em; }
+    .job-role { display: block; margin-top: 3px; color: var(--muted); font-size: 15px; font-weight: 400; letter-spacing: 0; }
+    .job-toggle {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      font-size: 24px;
+      transition: transform .2s ease;
+    }
+    .job[open] .job-toggle { transform: rotate(45deg); }
+    .job-body {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      padding: 0 62px 32px 164px;
+    }
+    .job-body p { margin: 0; font-size: 16px; }
+    .job-body strong { display: block; margin-bottom: 8px; color: var(--forest); }
+
+    .roles {
+      background: var(--paper-light);
+    }
+
+    .roles-lead {
+      max-width: 910px;
+      margin: 0 0 64px;
+      font-size: clamp(42px, 6vw, 78px);
+      font-weight: 720;
+      letter-spacing: -.057em;
+      line-height: .96;
+    }
+
+    .role-list { border-top: 1px solid var(--ink); }
+    .role-row {
+      display: grid;
+      grid-template-columns: 100px minmax(220px, .65fr) minmax(0, 1fr);
+      gap: 30px;
+      padding: 30px 0;
+      border-bottom: 1px solid var(--ink);
+    }
+    .role-index { color: var(--coral); font-size: 14px; font-weight: 800; }
+    .role-row h3 { margin: 0; font-size: 29px; letter-spacing: -.035em; line-height: 1.05; }
+    .role-row p { margin: 0; color: var(--muted); }
+
+    .chistovik {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 54px;
+      align-items: center;
+      background:
+        radial-gradient(circle at 88% 20%, rgba(230,93,59,.22), transparent 15rem),
+        var(--forest);
+      color: var(--paper-light);
+    }
+    .chistovik .section-label { color: rgba(255,255,255,.62); }
+    .chistovik h2 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(48px, 7vw, 88px);
+      font-weight: 720;
+      letter-spacing: -.065em;
+      line-height: .92;
+    }
+    .chistovik-copy { max-width: 690px; margin: 30px 0; color: rgba(255,255,255,.8); font-size: 20px; }
+    .chistovik .button { border-color: rgba(255,255,255,.72); color: white; }
+    .chistovik .button.primary { background: var(--paper-light); color: var(--ink); border-color: var(--paper-light); }
+    .chistovik-mark {
+      position: relative;
+      display: grid;
+      min-height: 330px;
+      place-items: center;
+    }
+    .chistovik-mark img {
+      width: min(78%, 220px);
+      aspect-ratio: 1;
+      border-radius: 46px;
+      box-shadow: 0 30px 65px rgba(0,0,0,.3);
+      transform: rotate(-5deg);
+    }
+    .chistovik-mark::after {
+      position: absolute;
+      right: 10px;
+      bottom: 0;
+      color: rgba(255,255,255,.44);
+      content: "¶";
+      font-size: 130px;
+      line-height: 1;
+    }
+
+    .public-collage {
+      display: grid;
+      grid-template-columns: minmax(0, 1.28fr) minmax(0, 1fr) minmax(250px, .76fr);
+      gap: 18px;
+      align-items: start;
+    }
+    .voice-stack {
+      display: grid;
+      min-width: 0;
+      gap: 18px;
+    }
+
+    .voice-card {
+      position: relative;
+      display: flex;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      background: var(--forest);
+      border-radius: 30px;
+      color: white;
+      text-decoration: none;
+      transition: transform .2s ease;
+    }
+    a.voice-card:hover { transform: translateY(-3px); }
+    .voice-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .voice-card.photo {
+      display: grid;
+      grid-template-rows: auto auto;
+      background: var(--paper-light);
+      border: 1px solid var(--line);
+      color: var(--ink);
+    }
+    .voice-media {
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      background: #e7dfcf;
+      line-height: 0;
+    }
+    .voice-content {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      align-items: start;
+      gap: 18px;
+      width: 100%;
+      min-width: 0;
+      padding: 28px;
+      background: var(--paper-light);
+    }
+    .voice-copy { min-width: 0; }
+    .voice-label {
+      margin: 0 0 10px;
+      color: rgba(255,255,255,.72);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      line-height: 1.25;
+      text-transform: uppercase;
+    }
+    .voice-card.photo .voice-label { color: var(--forest); }
+    .voice-card h3 {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      font-size: clamp(24px, 1.75vw, 32px);
+      font-weight: 700;
+      letter-spacing: -.035em;
+      line-height: 1.04;
+    }
+    .voice-arrow {
+      display: grid;
+      width: 40px;
+      height: 40px;
+      place-items: center;
+      align-self: end;
+      justify-self: end;
+      background: rgba(246,239,225,.94);
+      border-radius: 50%;
+      color: var(--ink);
+      font-size: 19px;
+    }
+    .voice-channel { min-height: 540px; border-radius: 30px 100px 30px 30px; }
+    .voice-channel .voice-content { align-content: space-between; padding: 42px; background: transparent; }
+    .voice-channel .voice-copy { align-self: start; }
+    .voice-channel h3 { font-size: clamp(44px, 3.7vw, 64px); }
+    .voice-channel p:not(.voice-label) { max-width: 520px; margin: 24px 0 0; color: rgba(255,255,255,.78); }
+    .voice-interview { border-radius: 80px 30px 30px 30px; }
+    .voice-interview .voice-media { background: #ffbc2e; }
+    .voice-avito { border-radius: 30px 96px 30px 30px; }
+    .voice-avito .voice-media { background: #243b39; }
+    .voice-avito .voice-content { padding: 26px 22px 26px 26px; }
+    .voice-avito h3 { font-size: clamp(24px, 1.65vw, 30px); }
+    .voice-ux { border-radius: 30px 30px 96px 30px; }
+    .voice-lectures { grid-template-columns: 56% minmax(0, 44%); grid-template-rows: auto; border-radius: 30px 30px 92px 30px; }
+    .voice-lectures .voice-content { padding: 26px 22px 26px 26px; }
+    .voice-lectures h3 { font-size: clamp(23px, 1.55vw, 29px); }
+    .voice-mts {
+      min-height: 300px;
+      background: var(--coral);
+      border-radius: 30px 88px 30px 30px;
+      color: var(--ink);
+    }
+    .voice-mts .voice-label { color: rgba(23,25,22,.66); }
+    .voice-mts .voice-content { grid-template-columns: 1fr; background: var(--coral); }
+    .voice-mts h3 { font-size: clamp(25px, 1.8vw, 32px); }
+    .voice-note {
+      margin: 16px 0 0;
+      color: rgba(23,25,22,.72);
+      font-size: 16px;
+      line-height: 1.38;
+    }
+
+    .topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 34px;
+    }
+    .topic {
+      padding: 9px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .contact {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+      gap: clamp(50px, 8vw, 110px);
+      align-items: end;
+      background: var(--coral);
+    }
+    .contact h2 {
+      margin: 0;
+      font-size: clamp(49px, 7vw, 88px);
+      font-weight: 720;
+      letter-spacing: -.065em;
+      line-height: .92;
+    }
+    .contact-copy { margin: 32px 0 0; font-size: 19px; }
+    .contact-actions { display: grid; gap: 10px; }
+    .contact-actions .button { width: 100%; background: var(--paper-light); }
+    .contact-actions .button.primary { background: var(--ink); }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      padding: 26px clamp(28px, 5.5vw, 84px);
+      background: var(--ink);
+      color: rgba(255,255,255,.72);
+      font-size: 13px;
+    }
+    .footer p { margin: 0; }
+    .footer a { color: white; }
+
+    @media (max-width: 840px) {
+      body { background: var(--paper); }
+      .shell { width: 100%; margin: 0; border: 0; border-radius: 0; box-shadow: none; }
+      .header { align-items: flex-start; padding: 18px 20px; }
+      .nav { justify-content: flex-end; gap: 10px 16px; }
+      .nav a:nth-child(2), .nav a:nth-child(4) { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-copy { min-height: 670px; }
+      .hero-visual { min-height: 620px; margin: 0 44px 96px; }
+      .manifesto,
+      .section-heading,
+      .case-featured,
+      .chistovik,
+      .contact { grid-template-columns: 1fr; }
+      .public-collage { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .voice-stack { display: contents; }
+      .voice-card { min-height: 0; }
+      .voice-card.photo,
+      .voice-lectures { grid-template-columns: 1fr; grid-template-rows: auto auto; }
+      .voice-channel { grid-column: 1 / -1; min-height: 450px; }
+      .voice-card h3,
+      .voice-avito h3,
+      .voice-lectures h3 { font-size: clamp(26px, 3.8vw, 32px); }
+      .case-number { min-height: 330px; }
+      .job-body { grid-template-columns: 1fr; padding-left: 164px; }
+      .role-row { grid-template-columns: 70px minmax(180px, .65fr) minmax(0, 1fr); }
+      .chistovik-mark { min-height: 260px; }
+    }
+
+    @media (max-width: 540px) {
+      body { font-size: 17px; }
+      .header { gap: 16px; }
+      .nav { max-width: 170px; }
+      .hero-copy { min-height: auto; padding: 68px 20px 58px; }
+      .hero-copy::before { top: 12px; right: 22px; width: 45px; height: 45px; border-radius: 14px; box-shadow: 5px 5px 0 var(--forest); font-size: 26px; }
+      h1 { font-size: clamp(50px, 16vw, 68px); }
+      .hero-intro { font-size: 20px; }
+      .hero-bottom { align-items: flex-start; flex-direction: column; margin-top: 42px; }
+      .small-note { max-width: 260px; text-align: left; }
+      .hero-visual { min-height: 500px; margin: 0 20px 86px; }
+      .hero-visual::before { inset: 14px -8px -12px 10px; }
+      .hero-visual img { border-width: 6px; }
+      .photo-caption { right: 8px; bottom: -48px; width: calc(100% - 16px); padding: 15px 16px; font-size: 15px; }
+      .manifesto,
+      .section { padding: 78px 20px; }
+      .manifesto h2 { font-size: clamp(42px, 13vw, 60px); }
+      .section-heading { gap: 22px; margin-bottom: 38px; }
+      .case-pair { grid-template-columns: 1fr; }
+      .case-compact,
+      .case-compact:first-child,
+      .case-compact + .case-compact { min-height: 0; padding: 38px 0; border-left: 0; }
+      .case-compact + .case-compact { border-top: 1px solid var(--ink); }
+      .case-compact .button { margin-top: 34px; }
+      .compact-metrics { flex-wrap: wrap; }
+      .job summary { grid-template-columns: 1fr auto; gap: 12px; }
+      .job time { grid-column: 1 / -1; }
+      .job-body { padding: 0 0 28px; }
+      .role-row { grid-template-columns: 44px minmax(0, 1fr); gap: 18px; }
+      .role-row p { grid-column: 2; }
+      .chistovik-mark { min-height: 220px; }
+      .public-collage { grid-template-columns: 1fr; gap: 14px; }
+      .voice-card,
+      .voice-channel { grid-column: auto; border-radius: 26px 70px 26px 26px; }
+      .voice-channel { min-height: 460px; }
+      .voice-card.photo { display: flex; min-height: 0; }
+      .voice-media { display: none; }
+      .voice-card.photo .voice-content { min-height: 210px; }
+      .voice-content { gap: 14px; padding: 24px; }
+      .voice-channel .voice-content { padding: 30px 24px; }
+      .voice-card h3,
+      .voice-avito h3,
+      .voice-lectures h3 { font-size: clamp(27px, 8vw, 34px); }
+      .voice-channel h3 { font-size: clamp(40px, 12vw, 56px); }
+      .voice-mts { min-height: 230px; }
+      .contact-actions { margin-top: 10px; }
+      .footer { align-items: flex-start; flex-direction: column; padding: 24px 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="header">
+      <a class="brand" href="#top" aria-label="Анна Акулова — в начало страницы">
+        <span class="brand-mark" aria-hidden="true">А</span>
+        <span>Анна Акулова · UX-редактор</span>
+      </a>
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#approach">Подход</a>
+        <a href="#cases">Кейсы</a>
+        <a href="#experience">Опыт</a>
+        <a href="#public">Публично</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+    </header>
+
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <div>
+          <p class="kicker">Финтех · B2B · сложные интерфейсы</p>
+          <h1>Превращаю сложное в&nbsp;<span class="accent-line">понятный</span> продукт.</h1>
+          <p class="hero-intro">Я Анна Акулова. Помогаю командам разложить по полочкам запутанные сценарии, найти места, где пользователь может ошибиться, и собрать текст, интерфейс и правила в работающую систему.</p>
+        </div>
+        <div class="hero-bottom">
+          <div class="actions">
+            <a class="button primary" href="#cases">Смотреть кейсы <span aria-hidden="true">↓</span></a>
+            <a class="button" href="https://docs.google.com/document/d/1e5l34vtrQLcKoxIf2WV---KLBUoKcGdsjC12u28gZW0/edit?tab=t.0" target="_blank" rel="noopener noreferrer">Резюме ↗</a>
+          </div>
+          <p class="small-note">Сейчас отвечаю за тексты и пользовательский путь в финтехе Авито.</p>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="assets/portrait.jpg" alt="Анна Акулова" width="910" height="1365">
+        <p class="photo-caption">Люблю момент, когда запутанная схема наконец складывается — и её можно объяснить одним экраном.</p>
+      </div>
+    </section>
+
+    <section class="manifesto" id="approach">
+      <div>
+        <p class="section-label">Как я думаю</p>
+        <h2>Люблю порядок. Не тот, где всё одинаковое, а тот, где сложную систему можно объяснить человеку.</h2>
+      </div>
+      <div class="manifesto-copy">
+        <p><strong>Мой кайф — не просто писать, а придумывать решения.</strong> Иногда это конкретный текст, иногда — визуал экрана, логика целого флоу или новый процесс.</p>
+        <p>Поэтому я сначала выясняю, как устроен сценарий и где он может сломаться. Текст становится последним слоем — и проверкой того, всё ли мы поняли про сам продукт.</p>
+      </div>
+    </section>
+
+    <section class="section" id="cases">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">Рабочие кейсы</p>
+          <h2>Три раза, когда текст оказался не текстом.</h2>
+        </div>
+        <p>За формулировкой почти всегда стоит система: пользовательское решение, продуктовая логика, ограничения юристов и метрика, которую важно сдвинуть.</p>
+      </div>
+
+      <article class="case-featured">
+        <div class="case-story">
+          <div>
+            <p class="case-meta">Финтех · Авито</p>
+            <h3>Деньги ушли, а на счёте не появились. Я пошла искать место, где ломается сценарий.</h3>
+            <p class="case-copy">Пользователи ошибались при банковском переводе. Я разобрала путь целиком и пересобрала инструкцию в интерфейсе и PDF-счёте — так, чтобы текст не объяснял проблему постфактум, а помогал её не создавать.</p>
+          </div>
+          <a class="button" href="https://annaakulova.ru/blog/all/avito-kak-blagodarya-tekstu-dengi-polzovateley-stali-na-55-rezhe-zavisat-mezhdu-schetami/" target="_blank" rel="noopener noreferrer">Разобрать кейс ↗</a>
+        </div>
+        <div class="case-number">
+          <strong class="metric">−55%</strong>
+          <p class="metric-note">поток нераспознанных платежей после изменений</p>
+        </div>
+      </article>
+
+      <div class="case-pair">
+        <article class="case-compact">
+          <p class="case-meta">Маркетплейс · Ozon</p>
+          <h3>Сделала человеческий слой поверх юридического договора.</h3>
+          <p>Продавцам нужно было понять оферту без юриста, а юристам — не потерять точность. Мы сохранили документ и добавили понятный маршрут по его смыслу.</p>
+          <div class="compact-metrics" aria-label="Результаты проекта">
+            <div><strong>−26%</strong><span>обращений в поддержку по договору</span></div>
+            <div><strong>+20,5%</strong><span>к удовлетворённости базой знаний</span></div>
+          </div>
+          <a class="button" href="https://annaakulova.ru/blog/all/o-dogovore-oferty-dlya-prodavtsov-ozon/" target="_blank" rel="noopener noreferrer">Смотреть кейс ↗</a>
+        </article>
+
+        <article class="case-compact">
+          <p class="case-meta">Образовательный проект · Vigbo</p>
+          <h3>Превратила двухнедельный интенсив в систему касаний.</h3>
+          <p>Спроектировала лендинг, письма, раздатку и чат-бота для фотографов. Здесь редактура стала одновременно продуктом, обучением и сценарием отношений с аудиторией.</p>
+          <div class="compact-metrics" aria-label="Результат проекта">
+            <div><strong>+67%</strong><span>к базе подписчиков блога за год</span></div>
+          </div>
+          <a class="button" href="https://annaakulova.ru/blog/all/onlayn-intensiv-dlya-fotografov-2020/" target="_blank" rel="noopener noreferrer">Смотреть кейс ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <p class="section-label">Опыт</p>
+      <p class="experience-intro">За десять лет я прошла путь от контента и маркетинга к B2B, legal, финтеху и сложным продуктовым сценариям. Каждый слой остался со мной.</p>
+
+      <div class="timeline">
+        <details class="job" open>
+          <summary>
+            <time>2023 — сейчас</time>
+            <span class="job-name">Авито<span class="job-role">финтех, платежи, договоры, безопасные сделки</span></span>
+            <span class="job-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="job-body">
+            <p><strong>Делаю руками</strong>Интерфейсные тексты, письма, состояния и сложные флоу с зависимостями по продукту.</p>
+            <p><strong>Влияю шире текста</strong>Подключаюсь к сценарию вместе с дизайнером, работаю с исследователями и сама договариваюсь с юристами.</p>
+            <p><strong>Держу в фокусе</strong>Ошибки пользователей, доверие, деньги и связь редакторского решения с продуктовой метрикой.</p>
+          </div>
+        </details>
+
+        <details class="job">
+          <summary>
+            <time>2020 — 2022</time>
+            <span class="job-name">Ozon Marketplace<span class="job-role">продавцы, база знаний, интерфейсы, договоры</span></span>
+            <span class="job-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="job-body">
+            <p><strong>Писала</strong>Новости платформы, инструкции, скрипты поддержки, интерфейсные тексты и подсказки к оферте.</p>
+            <p><strong>Строила</strong>Логику сценариев и качество базы знаний, договаривалась с заказчиками и контролировала результат.</p>
+            <p><strong>Научилась</strong>Работать на границе продукта, поддержки и юридической точности.</p>
+          </div>
+        </details>
+
+        <details class="job">
+          <summary>
+            <time>2019 — 2020</time>
+            <span class="job-name">Vigbo<span class="job-role">контент, лендинги, рассылки, образовательные проекты</span></span>
+            <span class="job-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="job-body">
+            <p><strong>Писала</strong>Статьи, интервью, письма, лендинги и материалы для образовательных запусков.</p>
+            <p><strong>Собирала</strong>Коммуникации вокруг проектов, планировала блог и ставила задачи дизайнерам.</p>
+            <p><strong>Поняла</strong>Что редактор может проектировать не один материал, а весь путь аудитории.</p>
+          </div>
+        </details>
+
+        <details class="job">
+          <summary>
+            <time>2017 — 2019</time>
+            <span class="job-name">Ашманов и партнёры<span class="job-role">сайты, конференции, презентации, SEO</span></span>
+            <span class="job-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="job-body">
+            <p><strong>Создавала</strong>Тексты для сайтов, рассылок, презентаций, кейсов и брошюр.</p>
+            <p><strong>Координировала</strong>Три сайта и связывала дизайн, вёрстку и разработку.</p>
+            <p><strong>Запускала</strong>Сайты отраслевых конференций eTarget и Optimization.</p>
+          </div>
+        </details>
+
+        <details class="job">
+          <summary>
+            <time>2015 — 2017</time>
+            <span class="job-name">Начало<span class="job-role">ВШЭ, соцмедиа, мониторинг и информационная повестка</span></span>
+            <span class="job-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="job-body">
+            <p><strong>Училась</strong>Быстро разбираться в теме, проводить интервью и вынимать главное.</p>
+            <p><strong>Работала</strong>Со статьями, рассылками, соцсетями и рекламными текстами.</p>
+            <p><strong>Сохранила</strong>Интерес к сложному контексту и привычку проверять, что именно мы утверждаем.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section roles">
+      <p class="section-label">Несколько способов быть полезной</p>
+      <h2 class="roles-lead">Я могу быть разной — и в каждой роли остаюсь человеком, который собирает систему.</h2>
+      <div class="role-list">
+        <article class="role-row">
+          <span class="role-index">01</span>
+          <h3>В продуктовой команде</h3>
+          <p>Проектирую вместе с дизайнером, проверяю гипотезы, согласовываю с юристами и довожу решение до разработки. Хорошо чувствую себя там, где много условий, состояний и цены ошибки.</p>
+        </article>
+        <article class="role-row">
+          <span class="role-index">02</span>
+          <h3>В профессиональном разговоре</h3>
+          <p>Могу прийти в подкаст, интервью или на конференцию и говорить не о «магии слов», а о влиянии редактора, сложных сценариях, дизайн-системах и работе внутри большой компании.</p>
+        </article>
+        <article class="role-row">
+          <span class="role-index">03</span>
+          <h3>В образовательном проекте</h3>
+          <p>Читала лекции студентам МГУ и СПбГУ, проводила практику и собирала полноценный онлайн-интенсив. Мне интересно объяснять профессию через реальные задачи, а не набор правил.</p>
+        </article>
+        <article class="role-row">
+          <span class="role-index">04</span>
+          <h3>В собственных проектах</h3>
+          <p>Веду Telegram-канал «Аня учится пилить проекты» и делаю инструменты, которых мне самой не хватало в работе. Могу собрать гайд, шаблон или чек-лист, сама сверстать материал, нарисовать схему — или поставить точную задачу специалисту.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section chistovik" id="projects">
+      <div>
+        <p class="section-label">Собственный продукт</p>
+        <h2>«Чистовик» наводит порядок в текстах Figma.</h2>
+        <p class="chistovik-copy">Ставит правильные кавычки, тире и неразрывные пробелы в слое, фрейме или на всей странице. Не ломает стили и не переписывает слова — просто аккуратно делает свою работу.</p>
+        <div class="actions">
+          <a class="button primary" href="https://www.figma.com/community/plugin/1638816840468168578" target="_blank" rel="noopener noreferrer">Установить плагин ↗</a>
+          <span class="button" aria-disabled="true" title="Отдельная страница проекта появится после анонса">История проекта — скоро</span>
+        </div>
+      </div>
+      <div class="chistovik-mark" aria-hidden="true">
+        <img src="assets/chistovik-logo.png" alt="" width="400" height="400">
+      </div>
+    </section>
+
+    <section class="section" id="public">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">Публичный голос</p>
+          <h2>Рассказываю, как работа устроена на самом деле.</h2>
+        </div>
+        <p>Без героизации профессии и универсальных рецептов. Мне интереснее показывать решения, ошибки, ограничения и выводы, которые можно унести в свою работу.</p>
+      </div>
+
+      <div class="public-collage">
+        <div class="voice-stack">
+          <a class="voice-card voice-channel" href="https://t.me/akanna_notes" target="_blank" rel="noopener noreferrer">
+            <div class="voice-content">
+              <div class="voice-copy">
+                <p class="voice-label">Telegram-канал</p>
+                <h3>«Аня учится пилить проекты»</h3>
+                <p>Пишу короткие заметки о работе UX-редактора в корпорации, полезных сервисах, книгах, выступлениях и собственных проектах.</p>
+              </div>
+              <span class="voice-arrow" aria-hidden="true">↗</span>
+            </div>
+          </a>
+
+          <a class="voice-card photo voice-lectures" href="https://t.me/akanna_notes/216" target="_blank" rel="noopener noreferrer">
+            <div class="voice-media">
+              <img src="assets/lectures.jpg" alt="Лекция Анны для студентов" width="846" height="845" loading="lazy">
+            </div>
+            <div class="voice-content">
+              <div class="voice-copy"><p class="voice-label">Лекции · МГУ и СПбГУ</p><h3>Чем продуктовый текст отличается от медиа</h3></div>
+              <span class="voice-arrow" aria-hidden="true">↗</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="voice-stack">
+          <a class="voice-card photo voice-interview" href="https://ktostudent.ru/anna-akulova/" target="_blank" rel="noopener noreferrer">
+            <div class="voice-media">
+              <img src="assets/interview.jpg" alt="Обложка интервью Анны Акуловой для журнала Кто студент" width="2048" height="1114" loading="lazy">
+            </div>
+            <div class="voice-content">
+              <div class="voice-copy"><p class="voice-label">Интервью · Кто студент</p><h3>Хороший UX-редактор — дотошный зануда</h3></div>
+              <span class="voice-arrow" aria-hidden="true">↗</span>
+            </div>
+          </a>
+
+          <a class="voice-card photo voice-ux" href="https://ux-marafon.ru/reports/integratsiia-ux-redaktora-s-dizain-sistemoi-prakticheskie-rekomendatsii-i-sovety" target="_blank" rel="noopener noreferrer">
+            <div class="voice-media">
+              <img src="assets/ux-marathon.jpg" alt="Рабочее место во время доклада на UX-марафоне" width="1280" height="960" loading="lazy">
+            </div>
+            <div class="voice-content">
+              <div class="voice-copy"><p class="voice-label">Доклад · UX-марафон</p><h3>Что редактору делать с дизайн-системой</h3></div>
+              <span class="voice-arrow" aria-hidden="true">↗</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="voice-stack">
+          <a class="voice-card photo voice-avito" href="https://youtu.be/y_05bDJR7MA?t=2095&amp;si=MqrVj2ePErbvV281" target="_blank" rel="noopener noreferrer">
+            <div class="voice-media">
+              <img src="assets/avito-talk-optimized.jpg" alt="Анна выступает на митапе Авито" width="1100" height="1100" loading="lazy">
+            </div>
+            <div class="voice-content">
+              <div class="voice-copy"><p class="voice-label">Доклад · Авито</p><h3>Как редактор влияет на продукт</h3></div>
+              <span class="voice-arrow" aria-hidden="true">↗</span>
+            </div>
+          </a>
+
+          <a class="voice-card photo voice-mts" href="https://www.youtube.com/watch?v=F0Asz2B4pLE" target="_blank" rel="noopener noreferrer">
+            <div class="voice-media">
+              <img src="assets/mts-meetup.jpg" alt="Анна Акулова выступает на редакторском митапе МТС" width="800" height="600" loading="lazy">
+            </div>
+            <div class="voice-content">
+              <div class="voice-copy">
+                <p class="voice-label">Доклад · митап МТС</p>
+                <h3>Не всё можно измерить в деньгах</h3>
+                <p class="voice-note">Как защищать решения, работать с дизайн-метриками и строить креативную пару с дизайнером.</p>
+              </div>
+              <span class="voice-arrow" aria-hidden="true">↗</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="topics" aria-label="Темы для выступлений и разговоров">
+        <span class="topic">UX-редактор внутри продукта</span>
+        <span class="topic">Сложные и рискованные сценарии</span>
+        <span class="topic">Тексты в дизайн-системе</span>
+        <span class="topic">Влияние без формальной власти</span>
+        <span class="topic">AI и собственные инструменты</span>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div>
+        <p class="section-label">На связи</p>
+        <h2>Можно позвать меня поговорить — или придумать что-то большее.</h2>
+        <p class="contact-copy">Разовые текстовые заказы я не беру. Но открыта к разговорам с корпорациями, интервью, подкастам, образовательным проектам, коллаборациям и ролям, в которых редактор влияет на продукт шире текста.</p>
+      </div>
+      <div class="contact-actions">
+        <a class="button primary" href="https://t.me/akanna" target="_blank" rel="noopener noreferrer">Написать в Telegram ↗</a>
+        <a class="button" href="mailto:akanna.web@yandex.ru">Написать на почту</a>
+        <a class="button" href="https://docs.google.com/document/d/1e5l34vtrQLcKoxIf2WV---KLBUoKcGdsjC12u28gZW0/edit?tab=t.0" target="_blank" rel="noopener noreferrer">Посмотреть резюме ↗</a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Анна Акулова · UX-редактор</p>
+      <p><a href="https://annaakulova.ru/blog/" target="_blank" rel="noopener noreferrer">Блог</a> · <a href="https://t.me/akanna_notes" target="_blank" rel="noopener noreferrer">Telegram-канал</a></p>
+    </footer>
+  </main>
+</body>
+</html>
