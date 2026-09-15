@@ -693,7 +693,7 @@
     .voice-avito h3 { font-size: clamp(22px, 1.45vw, 27px); }
     .voice-ux { grid-column: 2; grid-row: 2; }
     .voice-ux img { object-position: center; }
-    .voice-lectures { grid-column: 1; grid-row: 2; grid-template-columns: 56% minmax(0, 44%); grid-template-rows: minmax(0, 1fr); border-radius: 18px 18px 18px 54px; }
+    .voice-lectures { grid-column: 1; grid-row: 2; grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; border-radius: 18px 18px 18px 54px; }
     .voice-lectures img { object-position: 42% center; }
     .voice-lectures .voice-content { padding: 26px 22px 26px 26px; }
     .voice-lectures h3 { font-size: clamp(22px, 1.45vw, 27px); }
@@ -701,13 +701,13 @@
       grid-column: 3;
       grid-row: 2;
       min-height: 0;
-      background: var(--coral);
+      background: var(--paper-light);
       border-radius: 18px 18px 54px 18px;
       color: var(--ink);
     }
     .voice-mts img { object-position: center 42%; }
-    .voice-mts .voice-label { color: rgba(23,25,22,.66); }
-    .voice-mts .voice-content { grid-template-columns: 1fr; background: var(--coral); }
+    .voice-mts .voice-label { color: var(--forest); }
+    .voice-mts .voice-content { grid-template-columns: 1fr; background: var(--paper-light); }
     .voice-mts h3 { font-size: clamp(22px, 1.45vw, 27px); }
     .voice-description {
       margin: 14px 0 0;
@@ -715,22 +715,6 @@
       font-size: 16px;
       line-height: 1.4;
     }
-    .voice-cta {
-      display: inline-flex;
-      width: max-content;
-      min-height: 40px;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 16px;
-      border: 1px solid currentColor;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 750;
-      line-height: 1;
-      transition: background .2s ease, color .2s ease;
-    }
-    a.voice-card:hover .voice-cta { background: var(--ink); color: var(--paper-light); }
-
     .contact {
       display: grid;
       grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
@@ -1112,7 +1096,6 @@
                 <h3>Про профессию UX-редактора</h3>
                 <p class="voice-description">Рассказывала будущим журналистам о своей работе и отличиях продуктового текста от медиа, а ещё проводила практику.</p>
               </div>
-              <span class="voice-cta">Читать пост</span>
             </div>
           </a>
         </div>
@@ -1128,7 +1111,6 @@
                 <h3>Про путь в UX-редактуру</h3>
                 <p class="voice-description">Разговор о том, как договариваться с экспертами и почему одна ошибка редактора может сломать целый продукт.</p>
               </div>
-              <span class="voice-cta">Читать интервью</span>
             </div>
           </a>
 
@@ -1142,7 +1124,6 @@
                 <h3>Про тексты в дизайн-системе</h3>
                 <p class="voice-description">Что ещё за дизайн-система, как редактор может с ней работать, зачем всё это нужно и как ничего не сломать.</p>
               </div>
-              <span class="voice-cta">Смотреть доклад</span>
             </div>
           </a>
         </div>
@@ -1158,7 +1139,6 @@
                 <h3>Про влияние редактора на продукт</h3>
                 <p class="voice-description">Как редактору заработать авторитет, доказать свою ценность и понять, что команда начала вам доверять.</p>
               </div>
-              <span class="voice-cta">Смотреть доклад</span>
             </div>
           </a>
 
@@ -1172,7 +1152,6 @@
                 <h3>Про роль редактора в продукте</h3>
                 <p class="voice-description">Как мы защищаем свои решения и почему я верю, что не всё измеряется в деньгах.</p>
               </div>
-              <span class="voice-cta">Смотреть доклад</span>
             </div>
           </a>
         </div>
