@@ -82,7 +82,6 @@ details[open] summary i { transform:rotate(45deg); }
 .inline-material:hover { background:var(--mint); color:var(--ink); transform:translateY(-2px); }
 .inline-material:hover small,.inline-material:hover b { color:var(--ink); }
 .inline-material:focus-visible { outline:3px solid var(--acid); outline-offset:3px; }
-.featured-module[open] { background:#2a2b30; }
 .materials { background:var(--mint); }
 .material-card { position:relative; display:grid; grid-template-columns:150px 1fr 230px; gap:40px; min-height:460px; padding:38px; border:1px solid var(--ink); border-radius:28px; background:var(--paper); overflow:hidden; }
 .material-card + .material-card { margin-top:18px; }
@@ -143,7 +142,6 @@ footer p:nth-child(2) { color:rgba(255,255,255,.5); }
   .inline-material { min-height:70px; padding:14px; }
   .inline-material b { font-size:0; }
   .inline-material b::after { content:"↗"; font-size:18px; }
-  .featured-module[open] { margin:0; padding:0; }
   .material-card { grid-template-columns:1fr; padding:24px; }
   .material-meta { flex-direction:row; align-items:center; }
   .material-number { font-size:54px; }
