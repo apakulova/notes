@@ -28,7 +28,7 @@ img { display:block; max-width:100%; }
 .orbit { position:absolute; z-index:2; inset:7% -8%; border:2px solid var(--ink); border-radius:50%; transform:rotate(-18deg); }
 .orbit-two { inset:23% -13%; transform:rotate(17deg); }
 .hero-visual>p { position:absolute; z-index:3; right:0; bottom:0; margin:0; padding:14px; background:var(--acid); font-size:12px; line-height:1.35; text-transform:uppercase; letter-spacing:.11em; }
-.course-overview,.program,.materials,.source-gallery { padding:9vw 5vw; }
+.course-overview,.program,.competency-guide,.materials,.source-gallery { padding:9vw 5vw; }
 .course-overview { padding-top:7vw; padding-bottom:7vw; }
 .course-overview .section-heading { margin-bottom:48px; }
 .section-heading { display:grid; grid-template-columns:.72fr 1.28fr; align-items:start; margin-bottom:72px; }
@@ -84,6 +84,17 @@ details[open] summary i { transform:rotate(45deg); }
 .inline-material:hover { background:var(--mint); color:var(--ink); transform:translateY(-2px); }
 .inline-material:hover small,.inline-material:hover b { color:var(--ink); }
 .inline-material:focus-visible { outline:3px solid var(--acid); outline-offset:3px; }
+.competency-guide { background:var(--acid); }
+.competency-guide .section-heading { margin-bottom:42px; }
+.competency-lead { display:grid; grid-template-columns:1.25fr auto; align-items:end; gap:48px; margin:0 0 46px 36%; }
+.competency-lead p { max-width:760px; margin:0; font-size:20px; line-height:1.4; }
+.competency-tiles { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.competency-tiles>a { position:relative; display:flex; flex-direction:column; min-height:215px; padding:22px; border:1px solid var(--ink); border-radius:20px; background:var(--paper); transition:transform .2s,background .2s; }
+.competency-tiles>a:hover { background:var(--mint); transform:translateY(-3px); }
+.competency-tiles span { font-size:13px; }
+.competency-tiles h3 { margin:28px 0 8px; font-size:clamp(24px,2.5vw,39px); font-weight:530; line-height:1; letter-spacing:-.045em; }
+.competency-tiles p { margin:0 0 28px; color:#60615e; font-size:14px; line-height:1.35; }
+.competency-tiles b { margin-top:auto; font-size:11px; text-transform:uppercase; letter-spacing:.08em; }
 .materials { background:var(--mint); }
 .material-card { position:relative; display:grid; grid-template-columns:150px 1fr 230px; gap:40px; min-height:460px; padding:38px; border:1px solid var(--ink); border-radius:28px; background:var(--paper); overflow:hidden; }
 .material-card + .material-card { margin-top:18px; }
@@ -117,6 +128,8 @@ footer p:nth-child(2) { color:rgba(255,255,255,.5); }
   .compact-card { grid-column:span 12; }
   .outcomes ol { grid-template-columns:repeat(2,1fr); }
   .module-body { grid-template-columns:1fr; padding-left:72px; gap:40px; }
+  .competency-lead { grid-template-columns:1fr; align-items:start; margin-left:0; }
+  .competency-tiles { grid-template-columns:repeat(2,1fr); }
   .material-card { grid-template-columns:110px 1fr; }
   .material-shape { display:none; }
   .gallery-grid { grid-template-columns:repeat(2,1fr); }
@@ -125,7 +138,7 @@ footer p:nth-child(2) { color:rgba(255,255,255,.5); }
   .topbar { padding:0 20px; }
   .topbar nav { gap:16px; }
   .topbar nav a:nth-child(2) { display:none; }
-  .hero,.course-overview,.program,.materials,.source-gallery { padding-left:20px; padding-right:20px; }
+  .hero,.course-overview,.program,.competency-guide,.materials,.source-gallery { padding-left:20px; padding-right:20px; }
   .hero { padding-top:22vw; }
   .hero h1 { font-size:19vw; }
   .hero-visual { width:78vw; }
@@ -146,6 +159,10 @@ footer p:nth-child(2) { color:rgba(255,255,255,.5); }
   .inline-material { min-height:70px; padding:14px; }
   .inline-material b { font-size:0; }
   .inline-material b::after { content:"↗"; font-size:18px; }
+  .competency-lead { gap:26px; margin-bottom:34px; }
+  .competency-lead p { font-size:17px; }
+  .competency-tiles { grid-template-columns:1fr; }
+  .competency-tiles>a { min-height:180px; }
   .material-card { grid-template-columns:1fr; padding:24px; }
   .material-meta { flex-direction:row; align-items:center; }
   .material-number { font-size:54px; }
